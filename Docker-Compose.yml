@@ -1,0 +1,28 @@
+version : '3'
+ 
+services:
+  booking:
+    image: rasck/psuservices:booking-v0
+    ports: 
+    - 5000:80
+    links:
+    - mssqldb
+    depends_on:
+    - mssqldb
+    environment:
+     - ConnectionString=Data Source=mssqldb,1433;Initial Catalog=PSUNCBooking;Integrated Security=False;User ID=sa;Password=Change(!)Password123;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
+  payment:
+    image: rasck/psuservices:payment-v0
+    ports: 
+    - 4000:80
+  ad:
+    image: rasck/psuservices:adservice-v0
+    ports: 
+    - 3000:80
+  mssqldb:
+    image: microsoft/mssql-server-linux:2017-CU1
+    ports:
+    - 1433:1433
+    environment:
+    - ACCEPT_EULA=Y
+    - SA_PASSWORD=Change(!)Password123

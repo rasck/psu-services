@@ -1,0 +1,2 @@
+# Introduction
+Simple booking service for simple test. Is uses a local db to store data. The service is invoked using a JSON object containing a resource id as the main identifier of the resource. It is up to the caller to use manage the use of the resource ids.
